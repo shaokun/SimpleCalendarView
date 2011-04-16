@@ -11,6 +11,8 @@
 
 @interface MyCalendarViewController : UIViewController <CalendarViewDelegate> {
     CalendarView *calendarView;
+    IBOutlet UILabel *selectedDateLabel;
+    IBOutlet UILabel *selectedYearLabel;
 }
 
 @end

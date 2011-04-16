@@ -28,6 +28,7 @@
 		3E9C861713580A0E0083C49E /* NSDate+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9C861613580A0E0083C49E /* NSDate+TKCategory.m */; };
 		3E9C86221358261C0083C49E /* NSDate+DateInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9C86211358261C0083C49E /* NSDate+DateInformation.m */; };
 		3E9C8626135829500083C49E /* CalendarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9C8625135829500083C49E /* CalendarButton.m */; };
+		3EF016A413583E45006BE7D9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EF016A613583E45006BE7D9 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,8 @@
 		3E9C86241358294F0083C49E /* CalendarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarButton.h; sourceTree = "<group>"; };
 		3E9C8625135829500083C49E /* CalendarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarButton.m; sourceTree = "<group>"; };
 		3E9C8627135829F20083C49E /* CalendarViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewDelegate.h; sourceTree = "<group>"; };
+		3EF016A513583E45006BE7D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3EF016A713583E52006BE7D9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,9 +112,7 @@
 		3E9C85E1135806740083C49E /* MyCalendar */ = {
 			isa = PBXGroup;
 			children = (
-				3E9C8601135806D70083C49E /* CalendarView.xib */,
-				3E9C85ED135806740083C49E /* MainWindow.xib */,
-				3E9C85F3135806740083C49E /* MyCalendarViewController.xib */,
+				3EF0169813583D27006BE7D9 /* Resources */,
 				3E9C862813582A0A0083C49E /* Images */,
 				3E9C8623135829240083C49E /* References */,
 				3E9C86201358261C0083C49E /* NSDate+DateInformation.h */,
@@ -165,6 +166,17 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		3EF0169813583D27006BE7D9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3E9C8601135806D70083C49E /* CalendarView.xib */,
+				3E9C85ED135806740083C49E /* MainWindow.xib */,
+				3E9C85F3135806740083C49E /* MyCalendarViewController.xib */,
+				3EF016A613583E45006BE7D9 /* Localizable.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -196,6 +208,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = 3E9C85CC135806730083C49E;
 			productRefGroup = 3E9C85D8135806740083C49E /* Products */;
@@ -222,6 +235,7 @@
 				3E9C8610135808690083C49E /* todayselected.png in Resources */,
 				3E9C86131358087C0083C49E /* leftarrow.png in Resources */,
 				3E9C86141358087C0083C49E /* rightarrow.png in Resources */,
+				3EF016A413583E45006BE7D9 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +282,15 @@
 				3E9C85F4135806740083C49E /* en */,
 			);
 			name = MyCalendarViewController.xib;
+			sourceTree = "<group>";
+		};
+		3EF016A613583E45006BE7D9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EF016A513583E45006BE7D9 /* en */,
+				3EF016A713583E52006BE7D9 /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -352,6 +375,7 @@
 				3E9C85FA135806740083C49E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

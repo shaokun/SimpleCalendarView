@@ -12,23 +12,23 @@
     monthLabel.text = [NSString stringWithFormat:@"%d", month];
 }
 
-- (int)monthOfDate:(NSDate *)date {
-    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSWeekdayCalendarUnit;
-    NSCalendar *calendar = [NSCalendar currentCalendar];
- 
-    NSDateComponents *comps = [calendar components:unitFlags fromDate:date];
-    
-    return [comps month];
-}
-
-- (int)yearOfDate:(NSDate *)date {
-    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSWeekdayCalendarUnit;
-    NSCalendar *calendar = [NSCalendar currentCalendar];
- 
-    NSDateComponents *comps = [calendar components:unitFlags fromDate:date];
-    
-    return [comps year];
-}
+//- (int)monthOfDate:(NSDate *)date {
+//    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSWeekdayCalendarUnit;
+//    NSCalendar *calendar = [NSCalendar currentCalendar];
+// 
+//    NSDateComponents *comps = [calendar components:unitFlags fromDate:date];
+//    
+//    return [comps month];
+//}
+//
+//- (int)yearOfDate:(NSDate *)date {
+//    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSWeekdayCalendarUnit;
+//    NSCalendar *calendar = [NSCalendar currentCalendar];
+// 
+//    NSDateComponents *comps = [calendar components:unitFlags fromDate:date];
+//    
+//    return [comps year];
+//}
 
 - (void)updateButtons {
     for (UIView *subview in gridView.subviews) {
@@ -61,13 +61,21 @@
                                   inUnit:NSMonthCalendarUnit
                                  forDate:previousDate];
     
-    NSArray *titles = [NSArray arrayWithObjects:@"一", @"二", @"三", @"四", @"五", @"六", @"日", nil];
+    NSArray *titles = [NSArray arrayWithObjects:
+        NSLocalizedString(@"一", nil),
+        NSLocalizedString(@"二", nil),
+        NSLocalizedString(@"三", nil),
+        NSLocalizedString(@"四", nil),
+        NSLocalizedString(@"五", nil),
+        NSLocalizedString(@"六", nil),
+        NSLocalizedString(@"日", nil), nil];
     
     for (NSString *title in titles) {
         UILabel *label = [[UILabel new] autorelease];
         label.text = title;
         label.textAlignment = UITextAlignmentCenter;
-        label.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"datecell.png"]];
+        label.font = [UIFont systemFontOfSize:12.0];
+//        label.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"datecell.png"]];
         label.alpha = 0.8;
         
         [gridView addSubview:label];
@@ -86,8 +94,8 @@
     
     for (int d = 0; d < (weekday - 2); d++) {
         comps.day = lastDay++;
-        comps.month = [self monthOfDate:previousDate];
-        comps.year = [self yearOfDate:previousDate];
+        comps.month = [previousDate dateInformation].month;
+        comps.year = [previousDate year];
         date = [gregorian dateFromComponents:comps];
         CalendarButton *button = [CalendarButton createCalendarButton:date gray:YES];
         [button addTarget:self action:@selector(dateSelected:) forControlEvents:UIControlEventTouchUpInside];
@@ -111,8 +119,8 @@
     int n = 49 - gridView.subviews.count;
     for (int d = 0; d < n; d++) {
         comps.day = d + 1;
-        comps.month = [self monthOfDate:nextDate];
-        comps.year = [self yearOfDate:nextDate];;
+        comps.month = [nextDate dateInformation].month;
+        comps.year = [nextDate dateInformation].year;
         date = [gregorian dateFromComponents:comps];
         
         CalendarButton *button = [CalendarButton createCalendarButton:date gray:YES];
@@ -130,8 +138,8 @@
     gridView.margin = 0;
     
     NSDate *now = [NSDate date];
-    int month = [self monthOfDate:now];
-    int year = [self yearOfDate:now];
+    int month = [now dateInformation].month;
+    int year = [now dateInformation].year;
 
     self.selectedYear = year;
     self.selectedMonth = month;
@@ -155,7 +163,7 @@
 - (IBAction)selectNextMonth:(id)sender {
     int month = self.selectedMonth + 1;
     
-    if (month < 12) {
+    if (month <= 12) {
         self.selectedMonth = month;
     } else {
         self.selectedMonth = 1;

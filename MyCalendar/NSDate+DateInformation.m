@@ -11,6 +11,18 @@
 
 @implementation NSDate (DateInformation)
 
+- (int)day {
+    return [self dateInformation].day;
+}
+
+- (int)month {
+    return [self dateInformation].month;
+}
+
+- (int)year {
+    return [self dateInformation].year;
+}
+
 - (DateInformation) dateInformation {
     return [self dateInformationWithTimeZone:[NSTimeZone systemTimeZone]];
 }

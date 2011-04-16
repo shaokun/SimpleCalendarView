@@ -1,0 +1,15 @@
+/*
+genstrings -o MyCalendar/en.lproj/  MyCalendar/*.m
+
+
+All localizable strings in code should be externalized and referenced using NSLocalizedString.
+Create a Localizable.strings file, run from the project root, where "Classes/*.m" is where your classes files are:
+genstrings -o English.lproj Classes/*.m
+This will create a file in the root of your project.
+Drag this from the Finder into your project, select "UFT-16" and "Do not copy".
+Right click on the "Localizable.strings" and "Get Info".
+Under the "General Tab" there should be "Localizations" with your default local language.
+At the bottom of the window should be a "Add Localization" button, clicking this will allow you to add additional Localizations.
+To append new keys rather then replace the whole file:
+genstrings -o English.lproj *.m Classes/*.m
+*/

@@ -13,6 +13,7 @@
     CalendarButton *button = [CalendarButton buttonWithType:UIButtonTypeCustom];
     button.date = date;
     button.alpha = gray ? 0.7 : 0.8;
+    button.titleLabel.font = [UIFont systemFontOfSize:14.0];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button setTitle:[NSString stringWithFormat:@"%d", [comps day]] forState:UIControlStateNormal];
 //    [button setTitle:[NSString stringWithFormat:@"%d", [date dateInformation].day] forState:UIControlStateNormal];

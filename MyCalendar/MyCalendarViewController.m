@@ -11,12 +11,15 @@
 @implementation MyCalendarViewController
 
 - (void)calendarViewDateSelected:(CalendarView *)calendarView date:(NSDate *)date {
-    NSLog(@"%@", date);
+    selectedDateLabel.text = [NSString stringWithFormat:@"%@", date];
+//    NSLog(@"%@", date);
 }
 
 - (void)dealloc
 {
     [calendarView release];
+    [selectedDateLabel release];
+    [selectedYearLabel release];
     [super dealloc];
 }
 
@@ -44,15 +47,26 @@
             frame.origin.y = 53;
             calendarView.frame = frame;
             calendarView.delegate = self;
+            
+            [calendarView addObserver:self forKeyPath:@"selectedMonth" options:NSKeyValueObservingOptionNew context:nil];
+
+            [calendarView addObserver:self forKeyPath:@"selectedYear" options:NSKeyValueObservingOptionNew context:nil];
             break;
         }
     }
 
     [self.view addSubview:calendarView];
+    
+    selectedYearLabel.text = [NSString stringWithFormat:@"Year of %d", calendarView.selectedYear];
+
 }
 
 - (void)viewDidUnload
 {
+    [selectedDateLabel release];
+    selectedDateLabel = nil;
+    [selectedYearLabel release];
+    selectedYearLabel = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -62,6 +76,14 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    NSLog(@"%@", keyPath);
+    selectedYearLabel.text = [NSString stringWithFormat:@"Year of %d", calendarView.selectedYear];
 }
 
 @end

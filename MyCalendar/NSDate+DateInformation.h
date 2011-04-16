@@ -24,6 +24,9 @@ typedef struct DateInformation DateInformation;
 @interface NSDate (DateInformation)
 
 
+- (int)day;
+- (int)year;
+
 - (DateInformation) dateInformation;
 - (DateInformation) dateInformationWithTimeZone:(NSTimeZone *)tz;
 - (NSDate *) dateByAddingDays:(NSUInteger)days;
